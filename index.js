@@ -60,7 +60,7 @@ addComponent.getProperty("Property 1").data = 1;
 addComponent.getProperty("Property 2").data = 2;
 addComponent.getPort("Result").onEmit(function () {
   if (addComponent.getPort("Result").getProperty("Property 3").data === 3) {
-    //Success. 
+    console.log("it worked");
   }
 });
 

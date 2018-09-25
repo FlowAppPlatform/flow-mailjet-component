@@ -6,6 +6,10 @@
   "scripts": {
     "test": "test"
   },
+  "dependencies": {
+    "flow-platform-sdk": "^2.0.74",
+    "node-mailjet": "^3.2.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FlowAppPlatform/mailjet-send-email.git"
@@ -15,8 +19,5 @@
   "bugs": {
     "url": "https://github.com/FlowAppPlatform/mailjet-send-email/issues"
   },
-  "homepage": "https://github.com/FlowAppPlatform/mailjet-send-email#readme",
-  "dependencies": {
-    "flow-platform-sdk": "^2.0.74"
-  }
+  "homepage": "https://github.com/FlowAppPlatform/mailjet-send-email#readme"
 }
