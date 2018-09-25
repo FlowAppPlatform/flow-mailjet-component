@@ -2,71 +2,80 @@ var Flow = require('flow-platform-sdk');
 var Mail = require('./src/mail');
 
 /*
-We're creating an Add component whcih adds two numbers. 
-This component has two Properties - `Property 1`, and `Property 2` which denotes two numbers. 
-This component has one output port - Result. The output port has a property which sends out a result of two numbers and we call it `Property 3`.
+*
+* SendEmailComponent sends email
+* The component has 3 properties - `receivers`, `subject`, and `body` which are all required to send the email
+* The component has 1 output port - The output port, `Result` has a property, `sent`, a boolean which denotes the result of the email sending
+*
 */
 
-//Create a new class which extends Flow.Component. 
-class AddComponent extends Flow.Component {
+class SendEmailComponent extends Flow.Component {
+  
   constructor() {
-    //call the constructor of Flow.Component class. 
-    super();
 
-    //construct the component.
-    this.name = "Add";
+    super();    
+    this.name = 'Send Email';
 
-    //Create a new Property - Variale 1
-    var var1 = new Flow.Variable("Property 1", "number");
-    var1.required = true;
+    var receivers = new Flow.Property('receivers', 'list');
+    receivers.required = true;
 
-    //Add Property 1 to component.
-    this.addVariable(var1);
+    var subject = new Flow.Property('subject', 'text');
+    subject.required = true;
 
-    //Create a new Property - Variale 2
-    var var2 = new Flow.Variable("Property 2", "number");
-    var2.required = true;
+    var body = new Flow.Property('body', 'text');
+    body.required = true;
 
-    //Add Property 1 to component.
-    this.addVariable(var2);
+    this.addProperty(receivers);
+    this.addProperty(subject);
+    this.addProperty(body);
 
-    //Create a Result Output Port and Property 3.
-    var port = new Flow.Port("Result");
-    var var3 = new Flow.Variable("Property 3", "number");
-    var3.required = true;
-
-    //Add Property 3 to port. 
-    port.addVariable(var3);
-
-    //Add port to component.
+    var port = new Flow.Port('Result');
+    var sent = new Flow.Property('sent', 'boolean');
+    sent.required = true;
+     
+    port.addProperty(sent);
     this.addPort(port);
 
-    //Attach task function is a business logic function that adds two functions. 
-    this.attachTask(function () {
-      //Add two numbers and store it in result property. 
-      this.getPort("Result").getVariable("Property 3").data = this.getVariable("Property 1").data + this.getVariable("Property 2").data;
-      //Emit the output from that port. 
-      this.getPort("Result").emit();
-      //Mark task as complete.
-      this.taskComplete();
+    // send the email here
+    this.attachTask(function () {      
+      new Mail(
+        this.getProperty('receivers').data,
+        this.getProperty('subject').data,
+        this.getProperty('body').data,
+      )
+        .send()
+        .then(result => {
+          this.emitResult(result.body);
+        })
+        .catch(err => {
+          this.emitResult(err);
+        });
     });
 
   }
 
+  emitResult(result) {
+    console.log(result);
+    this.getPort('Result').getProperty('sent').data = !(result instanceof Error);
+    this.getPort('Result').emit();
+    this.taskComplete();
+  }
+
 }
 
-//To run this component for testing. 
-/* var addComponent = new AddComponent();
-addComponent.getVariable("Property 1").data = 1;
-addComponent.getVariable("Property 2").data = 2;
-addComponent.getPort("Result").onEmit(function () {
-  if (addComponent.getPort("Result").getVariable("Property 3").data === 3) {
-    console.log("it worked");
-  }
+// testing component 
+var component = new SendEmailComponent();
+component.getProperty('receivers').data = ['jeredebua@gmail.com'];
+component.getProperty('subject').data = 'Testing code';
+component.getProperty('body').data = 'Hello there, <strong>Jerry Edebua</strong>, Again, ignore this message.';
+component.getPort('Result').onEmit(function () {
+  if (component.getPort('Result').getProperty('sent').data) {
+    console.log('Mail sent');
+  } else
+    console.log("Mail not sent");
 });
 
-// do not forget to Execute the component.
-addComponent.execute(); */
+component.execute();
 
 /* new Mail(
   ['jeredebua@gmail.com'],
