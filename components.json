@@ -1,0 +1,56 @@
+{
+  "mailjet-send-email": {
+    "componentId": "mailjet-send-email",
+    "title": "Send Email",
+    "imgSrc": "src/assets/images/icons/send-email.svg",
+    "type": "sendEmailComponent",
+    "metadata": {
+      "icon-color": "#7ab260"
+    },
+    "ports": [
+      {
+        "id": "sent",
+        "title": "Sent",
+        "description": "Denotes the state when email is sent"
+      },
+      {
+        "id": "bounced",
+        "title": "Bounced",
+        "description": "Denotes the state when email bounces"
+      },
+      {
+        "id": "error",
+        "title": "Error",
+        "description": "Denotes the state when anyother error occurs"
+      }
+    ],
+    "properties": [
+      {
+        "id": "from",
+        "name": "From",
+        "type": "email",
+        "data": null
+      },
+      {
+        "id": "to",
+        "name": "To",
+        "type": "email",
+        "data": null
+      },
+      {
+        "id": "subject",
+        "name": "Subject",
+        "type": "text",
+        "data": null
+      },
+      {
+        "id": "body",
+        "name": "Body",
+        "type": "text",
+        "data": null
+      }
+    ],
+    "showOnComponentsPanel": false,
+    "isDeletable": false
+  }
+}

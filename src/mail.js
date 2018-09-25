@@ -6,27 +6,23 @@
  *
  */
 
-const API_VERSION = 'v3.1';
-const API_KEY_PUBLIC = 'ccf7c44ea1ddb60dd36bbd8f50aa2d24';
-const API_KEY_PRIVATE = '29f62c2654193c5fb746500769a7cefd';
-
 const mailjet = require('node-mailjet');
 const validator = require('email-validator');
 
 class Mail {
 
-  constructor(receivers, subject, body) {
-    this.receivers = receivers;
+  constructor(from, to, subject, body) {
+    this.from = from;
+    this.to = to;
     this.subject = subject;
     this.body = body;
 
-    this.sender = {
-      'Email': 'hello@fyipe.com',
-      'Name': 'Fyipe'
-    };
+    this.API_VERSION = 'v3.1';
+    this.API_KEY_PUBLIC = 'ccf7c44ea1ddb60dd36bbd8f50aa2d24';
+    this.API_KEY_PRIVATE = '29f62c2654193c5fb746500769a7cefd';
 
     this.mailjet = mailjet
-      .connect(API_KEY_PUBLIC, API_KEY_PRIVATE);
+      .connect(this.API_KEY_PUBLIC, this.API_KEY_PRIVATE);
   }
 
   send() {
@@ -34,16 +30,12 @@ class Mail {
     return (
       this.mailjet
         .post('send', {
-          'version': API_VERSION
+          'version': this.API_VERSION
         })
         .request({
           'Messages': [{
-            'From': this.sender,
-            'To': this.receivers.map(receiver => {
-              return {
-                'Email': receiver
-              };
-            }),
+            'From': {'Email': this.from},
+            'To': [{'Email': this.to}],
             'Subject': this.subject,
             'TextPart': this.body,
             'HTMLPart': this.body,
@@ -54,17 +46,12 @@ class Mail {
 
   mailValid() {
     return (
-      this.receiversValid() &&
+      validator.validate(this.from) &&
+      validator.validate(this.to) &&
       Boolean(this.subject) &&
       Boolean(this.body) &&
       Boolean(this.mailjet)
     );
-  }
-
-  receiversValid() {
-    try {
-      return !this.receivers.find(receiver => !validator.validate(receiver)) && this.receivers.length > 0;
-    } catch(e) { return false; }
   }
 
 }

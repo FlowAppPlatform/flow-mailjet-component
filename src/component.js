@@ -4,8 +4,8 @@ var Mail = require('./mail');
 /*
 *
 * SendEmailComponent sends email
-* The component has 3 properties - `receivers`, `subject`, and `body` which are all required to send the email
-* The component has 1 output port - The output port, `result` has a property, `sent`, a boolean which denotes the result of the email sending
+* The component has 4 properties - `From`, `To`, `Subject`, and `Body` which are all required to send the email
+* The component has 3 ports respective to the mail statuses `Sent`, `Bounced`, `Error`
 *
 */
 
@@ -16,47 +16,55 @@ class SendEmailComponent extends Flow.Component {
     super();    
     this.name = 'Send Email';
 
-    var receivers = new Flow.Property('receivers', 'list');
-    receivers.required = true;
+    var from = new Flow.Property('From', 'email');
+    from.required = true;
 
-    var subject = new Flow.Property('subject', 'text');
+    var to = new Flow.Property('To', 'email');
+    to.required = true;
+
+    var subject = new Flow.Property('Subject', 'text');
     subject.required = true;
 
-    var body = new Flow.Property('body', 'text');
+    var body = new Flow.Property('Body', 'text');
     body.required = true;
 
-    this.addProperty(receivers);
+    this.addProperty(from);
+    this.addProperty(to);
     this.addProperty(subject);
     this.addProperty(body);
 
-    var port = new Flow.Port('result');
-    var sent = new Flow.Property('sent', 'boolean');
-    sent.required = true;
-     
-    port.addProperty(sent);
-    this.addPort(port);
+    var sent = new Flow.Port('Sent');
+    var error = new Flow.Port('Error');
+    var bounced = new Flow.Port('Bounced');
+    
+    this.addPort(sent);
+    this.addPort(error);
+    this.addPort(bounced);
 
     // send the email here
-    this.attachTask(function () {      
+    this.attachTask(function () {
       new Mail(
-        this.getProperty('receivers').data,
-        this.getProperty('subject').data,
-        this.getProperty('body').data
+        this.getProperty('From').data,
+        this.getProperty('To').data,
+        this.getProperty('Subject').data,
+        this.getProperty('Body').data
       )
         .send()
-        .then(result => {
-          this.emitResult(result.body);
+        .then(() => {
+          this.emitResult(this.getPort('Sent'));
         })
         .catch(err => {
-          this.emitResult(err);
+          if (err.statusCode === 422) { // receipient mail box full
+            this.emitResult(this.getPort('Bounced'));
+          } else
+            this.emitResult(this.getPort('Error'));
         });
     });
 
   }
 
-  emitResult(result) {
-    this.getPort('result').getProperty('sent').data = !(result instanceof Error);
-    this.getPort('result').emit();
+  emitResult(port) {
+    port.emit();
     this.taskComplete();
   }
 
