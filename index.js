@@ -1,4 +1,5 @@
 var Flow = require('flow-platform-sdk');
+var Mail = require('./src/mail');
 
 /*
 We're creating an Add component whcih adds two numbers. 
@@ -16,26 +17,26 @@ class AddComponent extends Flow.Component {
     this.name = "Add";
 
     //Create a new Property - Variale 1
-    var var1 = new Flow.Property("Property 1", "number");
+    var var1 = new Flow.Variable("Property 1", "number");
     var1.required = true;
 
     //Add Property 1 to component.
-    this.addProperty(var1);
+    this.addVariable(var1);
 
     //Create a new Property - Variale 2
-    var var2 = new Flow.Property("Property 2", "number");
+    var var2 = new Flow.Variable("Property 2", "number");
     var2.required = true;
 
     //Add Property 1 to component.
-    this.addProperty(var2);
+    this.addVariable(var2);
 
     //Create a Result Output Port and Property 3.
     var port = new Flow.Port("Result");
-    var var3 = new Flow.Property("Property 3", "number");
+    var var3 = new Flow.Variable("Property 3", "number");
     var3.required = true;
 
     //Add Property 3 to port. 
-    port.addProperty(var3);
+    port.addVariable(var3);
 
     //Add port to component.
     this.addPort(port);
@@ -43,7 +44,7 @@ class AddComponent extends Flow.Component {
     //Attach task function is a business logic function that adds two functions. 
     this.attachTask(function () {
       //Add two numbers and store it in result property. 
-      this.getPort("Result").getProperty("Property 3").data = this.getProperty("Property 1").data + this.getProperty("Property 2").data;
+      this.getPort("Result").getVariable("Property 3").data = this.getVariable("Property 1").data + this.getVariable("Property 2").data;
       //Emit the output from that port. 
       this.getPort("Result").emit();
       //Mark task as complete.
@@ -55,14 +56,26 @@ class AddComponent extends Flow.Component {
 }
 
 //To run this component for testing. 
-var addComponent = new AddComponent();
-addComponent.getProperty("Property 1").data = 1;
-addComponent.getProperty("Property 2").data = 2;
+/* var addComponent = new AddComponent();
+addComponent.getVariable("Property 1").data = 1;
+addComponent.getVariable("Property 2").data = 2;
 addComponent.getPort("Result").onEmit(function () {
-  if (addComponent.getPort("Result").getProperty("Property 3").data === 3) {
+  if (addComponent.getPort("Result").getVariable("Property 3").data === 3) {
     console.log("it worked");
   }
 });
 
 // do not forget to Execute the component.
-addComponent.execute();
+addComponent.execute(); */
+
+/* new Mail(
+  ['jeredebua@gmail.com'],
+  'Testing code',
+  'Hello there, <strong>Jerry Edebua</strong>, Ignore this message.'
+).send()
+  .then(result => {
+    console.log(result.body)
+  })
+  .catch(err => {
+    throw err;
+  }); */
