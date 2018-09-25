@@ -41,7 +41,7 @@ class SendEmailComponent extends Flow.Component {
       new Mail(
         this.getProperty('receivers').data,
         this.getProperty('subject').data,
-        this.getProperty('body').data,
+        this.getProperty('body').data
       )
         .send()
         .then(result => {

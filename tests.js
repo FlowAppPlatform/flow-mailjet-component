@@ -18,15 +18,15 @@ component.getPort('result').onEmit(function () {
 // component.execute();
 
 describe('Mail Tests', function () {
-  it('Mail instance should not be valid', function (done) {
+  it(`Mail instance "new Mail()" should not be valid`, function (done) {
     const mail = new Mail();
     done(!mail.mailValid() ? null : new Error('Invalid mail instance read valid'));
   })
-  it('Mail instance should not be valid', function (done) {
+  it(`Mail instance "new Mail([], 'Subject', 'Body')" should not be valid`, function (done) {
     const mail = new Mail([], 'Subject', 'Body');
     done(!mail.mailValid() ? null : new Error('Invalid mail instance read valid'));
   })
-  it('Mail instance should not be valid', function (done) {
+  it(`Mail instance "new Mail(['hello'],'Hello there','Checking you')" should not be valid`, function (done) {
     const mail = new Mail(
       ['hello'],
       'Hello there',
@@ -34,7 +34,7 @@ describe('Mail Tests', function () {
     );
     done(!mail.mailValid() ? null : new Error('Invalid mail instance read valid'));
   })
-  it('Mail instance should be valid', function (done) {
+  it(`Mail instance "new Mail(['hello@sample.com'],'Hello there','Checking you')" should be valid`, function (done) {
     const mail = new Mail(
       ['hello@sample.com'],
       'Hello there',
