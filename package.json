@@ -1,0 +1,22 @@
+{
+  "name": "mailjet-send-email",
+  "version": "1.0.0",
+  "description": "Send Email Component of Mailjet designed to work with Flow SDK",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlowAppPlatform/mailjet-send-email.git"
+  },
+  "author": "Hackerbay Inc. <hello@hackerbay.io>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/FlowAppPlatform/mailjet-send-email/issues"
+  },
+  "homepage": "https://github.com/FlowAppPlatform/mailjet-send-email#readme",
+  "dependencies": {
+    "flow-platform-sdk": "^2.0.74"
+  }
+}
