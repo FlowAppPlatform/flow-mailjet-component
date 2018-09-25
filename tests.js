@@ -1,22 +1,6 @@
 var Mail = require('./src/mail');
 var SendEmailComponent = require('./src/component');
 
-// testing component 
-var component = new SendEmailComponent();
-
-component.getProperty('receivers').data = ['jeredebua@gmail.com'];
-component.getProperty('subject').data = 'Testing code';
-component.getProperty('body').data = 'Hello there, <strong>Jerry Edebua</strong>, Again, ignore this message.';
-
-component.getPort('result').onEmit(function () {
-  if (component.getPort('result').getProperty('sent').data) {
-    console.log('Mail sent');
-  } else
-    console.log('Mail not sent');
-});
-
-// component.execute();
-
 describe('Mail Tests', function () {
   it(`Mail instance "new Mail()" should not be valid`, function (done) {
     const mail = new Mail();
