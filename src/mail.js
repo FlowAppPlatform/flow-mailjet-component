@@ -29,7 +29,7 @@ class Mail {
   }
 
   send() {
-    if (!this.mailjet || !this.mailValid()) return new Error(`Mailer error, please check 'Mail' contructor`);
+    if (!this.mailValid()) return new Error(`Mailer error, please check 'Mail' contructor`);
     return (
       this.mailjet
         .post('send', {
@@ -53,7 +53,7 @@ class Mail {
 
   mailValid() {
     try {
-      return this.receivers.length > 0 && Boolean(this.subject) && Boolean(this.body);
+      return this.receivers.length > 0 && Boolean(this.subject) && Boolean(this.body) && Boolean(this.mailjet);
     } catch(e) { return false; }
   }
 
