@@ -15,59 +15,57 @@ const validator = require('email-validator');
 
 class Mail {
 
-  constructor(receivers, subject, body) {
-    this.receivers = receivers;
-    this.subject = subject;
-    this.body = body;
+	constructor(receivers, subject, body) {
+		this.receivers = receivers;
+		this.subject = subject;
+		this.body = body;
 
-    this.sender = {
-      'Email': 'hello@fyipe.com',
-      'Name': 'Fyipe'
-    };
+		this.sender = {
+			'Email': 'hello@fyipe.com',
+			'Name': 'Fyipe'
+		};
 
-    this.mailjet = mailjet
-      .connect(API_KEY_PUBLIC, API_KEY_PRIVATE)
-  }
+		this.mailjet = mailjet
+			.connect(API_KEY_PUBLIC, API_KEY_PRIVATE);
+	}
 
-  send() {
-    if (!this.mailValid()) return new Error(`Mailer error, please check 'Mail' contructor`);
-    return (
-      this.mailjet
-        .post('send', {
-          'version': API_VERSION
-        })
-        .request({
-          'Messages': [{
-            'From': this.sender,
-            'To': this.receivers.map(receiver => {
-              return {
-                'Email': receiver
-              }
-            }),
-            'Subject': this.subject,
-            'TextPart': this.body,
-            'HTMLPart': this.body,
-          }]
-        })
-    )
-  }
+	send() {
+		if (!this.mailValid()) return new Error('Mailer error, please check \'Mail\' contructor');
+		return (
+			this.mailjet
+				.post('send', {
+					'version': API_VERSION
+				})
+				.request({
+					'Messages': [{
+						'From': this.sender,
+						'To': this.receivers.map(receiver => {
+							return {
+								'Email': receiver
+							};
+						}),
+						'Subject': this.subject,
+						'TextPart': this.body,
+						'HTMLPart': this.body,
+					}]
+				})
+		);
+	}
 
-  mailValid() {
-    return (
-      this.receiversValid() &&
+	mailValid() {
+		return (
+			this.receiversValid() &&
       Boolean(this.subject) &&
       Boolean(this.body) &&
       Boolean(this.mailjet)
-    );
-  }
+		);
+	}
 
-  receiversValid() {
-    try {
-      return !Boolean(
-        this.receivers.find(receiver => !validator.validate(receiver))
-      ) && this.receivers.length > 0;
-    } catch(e) { return false; }
-  }
+	receiversValid() {
+		try {
+			return !this.receivers.find(receiver => !validator.validate(receiver)) && this.receivers.length > 0;
+		} catch(e) { return false; }
+	}
 
 }
 
