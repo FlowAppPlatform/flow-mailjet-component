@@ -1,5 +1,5 @@
 var Flow = require('flow-platform-sdk');
-var Mail = require('./src/mail');
+var Mail = require('./mail');
 
 /*
 *
@@ -55,7 +55,6 @@ class SendEmailComponent extends Flow.Component {
   }
 
   emitResult(result) {
-    console.log(result);
     this.getPort('Result').getProperty('sent').data = !(result instanceof Error);
     this.getPort('Result').emit();
     this.taskComplete();
@@ -63,28 +62,4 @@ class SendEmailComponent extends Flow.Component {
 
 }
 
-// testing component 
-var component = new SendEmailComponent();
-component.getProperty('receivers').data = ['jeredebua@gmail.com'];
-component.getProperty('subject').data = 'Testing code';
-component.getProperty('body').data = 'Hello there, <strong>Jerry Edebua</strong>, Again, ignore this message.';
-component.getPort('Result').onEmit(function () {
-  if (component.getPort('Result').getProperty('sent').data) {
-    console.log('Mail sent');
-  } else
-    console.log("Mail not sent");
-});
-
-component.execute();
-
-/* new Mail(
-  ['jeredebua@gmail.com'],
-  'Testing code',
-  'Hello there, <strong>Jerry Edebua</strong>, Ignore this message.'
-).send()
-  .then(result => {
-    console.log(result.body)
-  })
-  .catch(err => {
-    throw err;
-  }); */
+module.exports = SendEmailComponent;

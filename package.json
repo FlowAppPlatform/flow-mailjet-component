@@ -2,14 +2,16 @@
   "name": "mailjet-send-email",
   "version": "1.0.0",
   "description": "Send Email Component of Mailjet designed to work with Flow SDK",
-  "main": "index.js",
+  "main": "./src/component.js",
   "scripts": {
-    "test": "test"
+    "test": "./node_modules/mocha/bin/mocha tests.js"
   },
   "dependencies": {
     "flow-platform-sdk": "^2.0.94",
-    "mocha": "^5.2.0",
     "node-mailjet": "^3.2.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   },
   "repository": {
     "type": "git",
