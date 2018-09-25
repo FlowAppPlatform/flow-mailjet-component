@@ -5,7 +5,7 @@ var Mail = require('./mail');
 *
 * SendEmailComponent sends email
 * The component has 3 properties - `receivers`, `subject`, and `body` which are all required to send the email
-* The component has 1 output port - The output port, `Result` has a property, `sent`, a boolean which denotes the result of the email sending
+* The component has 1 output port - The output port, `result` has a property, `sent`, a boolean which denotes the result of the email sending
 *
 */
 
@@ -29,7 +29,7 @@ class SendEmailComponent extends Flow.Component {
     this.addProperty(subject);
     this.addProperty(body);
 
-    var port = new Flow.Port('Result');
+    var port = new Flow.Port('result');
     var sent = new Flow.Property('sent', 'boolean');
     sent.required = true;
      
@@ -55,8 +55,8 @@ class SendEmailComponent extends Flow.Component {
   }
 
   emitResult(result) {
-    this.getPort('Result').getProperty('sent').data = !(result instanceof Error);
-    this.getPort('Result').emit();
+    this.getPort('result').getProperty('sent').data = !(result instanceof Error);
+    this.getPort('result').emit();
     this.taskComplete();
   }
 

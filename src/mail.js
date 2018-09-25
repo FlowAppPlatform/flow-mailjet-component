@@ -11,6 +11,7 @@ const API_KEY_PUBLIC = 'ccf7c44ea1ddb60dd36bbd8f50aa2d24';
 const API_KEY_PRIVATE = '29f62c2654193c5fb746500769a7cefd';
 
 const mailjet = require('node-mailjet');
+const validator = require('email-validator');
 
 class Mail {
 
@@ -52,8 +53,19 @@ class Mail {
   }
 
   mailValid() {
+    return (
+      this.receiversValid() &&
+      Boolean(this.subject) &&
+      Boolean(this.body) &&
+      Boolean(this.mailjet)
+    );
+  }
+
+  receiversValid() {
     try {
-      return this.receivers.length > 0 && Boolean(this.subject) && Boolean(this.body) && Boolean(this.mailjet);
+      return !Boolean(
+        this.receivers.find(receiver => !validator.validate(receiver))
+      ) && this.receivers.length > 0;
     } catch(e) { return false; }
   }
 

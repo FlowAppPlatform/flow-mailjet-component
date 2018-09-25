@@ -4,13 +4,15 @@
   "description": "Send Email Component of Mailjet designed to work with Flow SDK",
   "main": "./src/component.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha tests.js"
+    "test": "eslint src --fix && ./node_modules/mocha/bin/mocha tests.js"
   },
   "dependencies": {
+    "email-validator": "^2.0.4",
     "flow-platform-sdk": "^2.0.94",
     "node-mailjet": "^3.2.1"
   },
   "devDependencies": {
+    "eslint": "^5.4.0",
     "mocha": "^5.2.0"
   },
   "repository": {
