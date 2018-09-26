@@ -1,6 +1,6 @@
 {
-  "mailjet-send-email": {
-    "componentId": "mailjet-send-email",
+  "flow-mailjet-component": {
+    "componentId": "flow-mailjet-component",
     "title": "Send Email",
     "imgSrc": "src/assets/images/icons/send-email.svg",
     "type": "sendEmailComponent",
