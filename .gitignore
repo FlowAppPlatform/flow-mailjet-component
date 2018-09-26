@@ -61,4 +61,4 @@ typings/
 .next
 
 .vscode/
-.gitignore
+test-mailing.js

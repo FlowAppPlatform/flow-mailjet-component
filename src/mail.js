@@ -11,15 +11,15 @@ const validator = require('email-validator');
 
 class Mail {
 
-  constructor(from, to, subject, body) {
+  constructor(API_KEY_PUBLIC, API_KEY_PRIVATE, from, to, subject, body) {
     this.from = from;
     this.to = to;
     this.subject = subject;
     this.body = body;
 
     this.API_VERSION = 'v3.1';
-    this.API_KEY_PUBLIC = 'ccf7c44ea1ddb60dd36bbd8f50aa2d24';
-    this.API_KEY_PRIVATE = '29f62c2654193c5fb746500769a7cefd';
+    this.API_KEY_PUBLIC = API_KEY_PUBLIC;
+    this.API_KEY_PRIVATE = API_KEY_PRIVATE;
 
     this.mailjet = mailjet
       .connect(this.API_KEY_PUBLIC, this.API_KEY_PRIVATE);
@@ -46,6 +46,9 @@ class Mail {
 
   mailValid() {
     return (
+      Boolean(this.API_KEY_PUBLIC) &&
+      Boolean(this.API_KEY_PRIVATE) &&
+      Boolean(this.mailjet) &&
       validator.validate(this.from) &&
       validator.validate(this.to) &&
       Boolean(this.subject) &&
