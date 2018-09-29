@@ -1,0 +1,28 @@
+{
+  "name": "flow-mailjet-component",
+  "version": "1.0.0",
+  "description": "Send Email Component of Mailjet designed to work with Flow SDK",
+  "main": "./src/component.js",
+  "scripts": {
+    "test": "eslint ./src --fix && ./node_modules/mocha/bin/mocha tests.js"
+  },
+  "dependencies": {
+    "email-validator": "^2.0.4",
+    "flow-platform-sdk": "^2.0.94",
+    "node-mailjet": "^3.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "mocha": "^5.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlowAppPlatform/flow-mailjet-component.git"
+  },
+  "author": "Hackerbay Inc. <hello@hackerbay.io>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/FlowAppPlatform/flow-mailjet-component/issues"
+  },
+  "homepage": "https://github.com/FlowAppPlatform/flow-mailjet-component#readme"
+}
