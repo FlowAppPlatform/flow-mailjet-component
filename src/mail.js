@@ -52,8 +52,7 @@ class Mail {
       validator.validate(this.from) &&
       validator.validate(this.to) &&
       Boolean(this.subject) &&
-      Boolean(this.body) &&
-      Boolean(this.mailjet)
+      Boolean(this.body)
     );
   }
 

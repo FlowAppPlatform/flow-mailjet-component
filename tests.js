@@ -7,21 +7,18 @@ describe('Mail Tests', function () {
     done(!mail.mailValid() ? null : new Error('Invalid mail instance read valid'));
   })
   it(`Mail instance "new Mail(
-    'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-    '29f62c2654193c5fb746500769a7cefd',
+    'ccf7c44ea1ddb60dd36bbd8f50aa2d24','29f62c2654193c5fb746500769a7cefd',
     '','to@sample.com','Subject','Body')" should not be valid`, function (done) {
     const mail = new Mail(
-      'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-      '29f62c2654193c5fb746500769a7cefd', '', 'to@sample.com', 'Subject', 'Body');
+      'ccf7c44ea1ddb60dd36bbd8f50aa2d24', '29f62c2654193c5fb746500769a7cefd',
+      '', 'to@sample.com', 'Subject', 'Body');
     done(!mail.mailValid() ? null : new Error('Invalid mail instance read valid'));
   })
   it(`Mail instance "new Mail(
-    'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-    '29f62c2654193c5fb746500769a7cefd',
+    'ccf7c44ea1ddb60dd36bbd8f50aa2d24','29f62c2654193c5fb746500769a7cefd',
     from@sample.com','hello','Hello there','Checking you')" should not be valid`, function (done) {
     const mail = new Mail(
-      'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-      '29f62c2654193c5fb746500769a7cefd',
+      'ccf7c44ea1ddb60dd36bbd8f50aa2d24', '29f62c2654193c5fb746500769a7cefd',
       'from@sample.com',
       'hello',
       'Hello there',
@@ -30,12 +27,10 @@ describe('Mail Tests', function () {
     done(!mail.mailValid() ? null : new Error('Invalid mail instance read valid'));
   })
   it(`Mail instance "new Mail(
-    'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-    '',
+    'ccf7c44ea1ddb60dd36bbd8f50aa2d24','',
     from@sample.com','to@sample.com','Hello there','Checking you')" should be valid`, function (done) {
     const mail = new Mail(
-      'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-      '',
+      'ccf7c44ea1ddb60dd36bbd8f50aa2d24', '',
       'from@sample.com',
       'to@sample.com',
       'Hello there',
@@ -44,12 +39,10 @@ describe('Mail Tests', function () {
     done(!mail.mailValid() ? null : new Error('Inalid mail instance read valid'));
   })
   it(`Mail instance "new Mail(
-    'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-    '29f62c2654193c5fb746500769a7cefd',
+    'ccf7c44ea1ddb60dd36bbd8f50aa2d24','29f62c2654193c5fb746500769a7cefd',
     from@sample.com','to@sample.com','Hello there','Checking you')" should be valid`, function (done) {
     const mail = new Mail(
-      'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-      '29f62c2654193c5fb746500769a7cefd',
+      'ccf7c44ea1ddb60dd36bbd8f50aa2d24', '29f62c2654193c5fb746500769a7cefd',
       'from@sample.com',
       'to@sample.com',
       'Hello there',
