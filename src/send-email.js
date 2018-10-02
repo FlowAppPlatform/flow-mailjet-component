@@ -4,7 +4,7 @@ var Mail = require('./mail');
 /*
 *
 * SendEmailComponent sends email
-* The component has 6 properties - `Public API Key`, `Private API Key`, From`, `To`, `Subject`, and `Body` which are all required to send the email
+* The component has 6 properties - `Public API Key`, `Private API Key`, From`, `To`, `Subject`, and `Body`
 * The component has 3 ports respective to the mail statuses `Sent`, `Bounced`, `Error`
 *
 */
@@ -29,11 +29,8 @@ class SendEmailComponent extends Flow.Component {
     to.required = true;
 
     var subject = new Flow.Property('Subject', 'text');
-    subject.required = true;
-
     var body = new Flow.Property('Body', 'text');
-    body.required = true;
-
+    
     this.addProperty(key_public);
     this.addProperty(key_private);
     this.addProperty(from);
@@ -62,24 +59,24 @@ class SendEmailComponent extends Flow.Component {
         ).send();
       
       if (doTask instanceof Error) {
-        this.emitResult(this.getPort('Error'));
+        this.emitResult('Error');
       } else
         doTask
           .then(() => {
-            this.emitResult(this.getPort('Sent'));
+            this.emitResult('Sent');
           })
           .catch(err => {
             if (err.statusCode === 422) { // receipient mail box full
-              this.emitResult(this.getPort('Bounced'));
+              this.emitResult('Bounced');
             } else
-              this.emitResult(this.getPort('Error'));
+              this.emitResult('Error');
           });
     });
 
   }
 
-  emitResult(port) {
-    port.emit();
+  emitResult(portName) {
+    this.getPort(portName).emit();
     this.taskComplete();
   }
 

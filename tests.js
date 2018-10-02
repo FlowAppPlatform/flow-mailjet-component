@@ -1,27 +1,25 @@
 var Mail = require('./src/mail');
-var SendEmailComponent = require('./src/component');
+var Component = require('./src/send-email');
 
-describe('Mail Tests', function () {
+describe(`Mail Tests
+`, function () {
   it(`Mail instance "new Mail()" should not be valid`, function (done) {
     const mail = new Mail();
     done(!mail.mailValid() ? null : new Error('Invalid mail instance read valid'));
   })
   it(`Mail instance "new Mail(
-    'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-    '29f62c2654193c5fb746500769a7cefd',
+    'ccf7c44ea1ddb60dd36bbd8f50aa2d24','29f62c2654193c5fb746500769a7cefd',
     '','to@sample.com','Subject','Body')" should not be valid`, function (done) {
     const mail = new Mail(
-      'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-      '29f62c2654193c5fb746500769a7cefd', '', 'to@sample.com', 'Subject', 'Body');
+      'ccf7c44ea1ddb60dd36bbd8f50aa2d24', '29f62c2654193c5fb746500769a7cefd',
+      '', 'to@sample.com', 'Subject', 'Body');
     done(!mail.mailValid() ? null : new Error('Invalid mail instance read valid'));
   })
   it(`Mail instance "new Mail(
-    'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-    '29f62c2654193c5fb746500769a7cefd',
+    'ccf7c44ea1ddb60dd36bbd8f50aa2d24','29f62c2654193c5fb746500769a7cefd',
     from@sample.com','hello','Hello there','Checking you')" should not be valid`, function (done) {
     const mail = new Mail(
-      'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-      '29f62c2654193c5fb746500769a7cefd',
+      'ccf7c44ea1ddb60dd36bbd8f50aa2d24', '29f62c2654193c5fb746500769a7cefd',
       'from@sample.com',
       'hello',
       'Hello there',
@@ -30,12 +28,10 @@ describe('Mail Tests', function () {
     done(!mail.mailValid() ? null : new Error('Invalid mail instance read valid'));
   })
   it(`Mail instance "new Mail(
-    'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-    '',
+    'ccf7c44ea1ddb60dd36bbd8f50aa2d24','',
     from@sample.com','to@sample.com','Hello there','Checking you')" should be valid`, function (done) {
     const mail = new Mail(
-      'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-      '',
+      'ccf7c44ea1ddb60dd36bbd8f50aa2d24', '',
       'from@sample.com',
       'to@sample.com',
       'Hello there',
@@ -44,12 +40,10 @@ describe('Mail Tests', function () {
     done(!mail.mailValid() ? null : new Error('Inalid mail instance read valid'));
   })
   it(`Mail instance "new Mail(
-    'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-    '29f62c2654193c5fb746500769a7cefd',
+    'ccf7c44ea1ddb60dd36bbd8f50aa2d24','29f62c2654193c5fb746500769a7cefd',
     from@sample.com','to@sample.com','Hello there','Checking you')" should be valid`, function (done) {
     const mail = new Mail(
-      'ccf7c44ea1ddb60dd36bbd8f50aa2d24',
-      '29f62c2654193c5fb746500769a7cefd',
+      'ccf7c44ea1ddb60dd36bbd8f50aa2d24', '29f62c2654193c5fb746500769a7cefd',
       'from@sample.com',
       'to@sample.com',
       'Hello there',
@@ -59,10 +53,11 @@ describe('Mail Tests', function () {
   })
 })
 
-describe('Component Tests', function () {
+describe(`Component Tests
+`, function () {
   it('Component should have all required properties', function (done) {
     try {
-      const component = new SendEmailComponent();
+      const component = new Component();
       component.getProperty('API_KEY_PUBLIC');
       component.getProperty('API_KEY_PRIVATE');
       component.getProperty('From');
@@ -74,7 +69,7 @@ describe('Component Tests', function () {
   })
   it('Component should have all required ports', function (done) {
     try {
-      const component = new SendEmailComponent();
+      const component = new Component();
       component.getPort('Sent');
       component.getPort('Bounced');
       component.getPort('Error');

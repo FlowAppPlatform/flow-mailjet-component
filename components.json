@@ -1,0 +1,85 @@
+{
+  "flow-mailjet-component-send-email": {
+    "componentId": "flow-mailjet-component-send-email",
+    "title": "Send Email",
+    "imgSrc": "assets/icons/send-email.svg",
+    "type": "flow-graph-component",
+    "file": "src/send-email.js",
+    "metadata": {
+      "icon-color": "#7ab260"
+    },
+    "ports": [
+      {
+        "id": "sent",
+        "title": "Sent",
+        "description": "Denotes the state when email is sent"
+      },
+      {
+        "id": "bounced",
+        "title": "Bounced",
+        "description": "Denotes the state when email bounces"
+      },
+      {
+        "id": "error",
+        "title": "Error",
+        "description": "Denotes the state when anyother error occurs"
+      }
+    ],
+    "properties": [
+      {
+        "categoryName": "General",
+        "categoryDescription": "Basic settings about email component.",
+        "properties": [
+          {
+            "id": "from",
+            "name": "From",
+            "type": "email",
+            "data": null,
+            "options": { "required": true }
+          },
+          {
+            "id": "to",
+            "name": "To",
+            "type": "email",
+            "data": null,
+            "options": { "required": true }
+          },
+          {
+            "id": "subject",
+            "name": "Subject",
+            "type": "text",
+            "data": null
+          },
+          {
+            "id": "body",
+            "name": "Body",
+            "type": "text",
+            "data": null
+          }
+        ]
+      }, 
+      {
+        "categoryName": "Advanced",
+        "categoryDescription": "API settings for Mailjet.",
+        "properties": [
+          {
+            "id": "public_key",
+            "name": "API_KEY_PUBLIC",
+            "type": "text",
+            "data": null,
+            "options": { "required": true, "global": true }
+          },
+          {
+            "id": "private_key",
+            "name": "API_KEY_PRIVATE",
+            "type": "text",
+            "data": null,
+            "options": { "required": true, "global": true }
+          }
+        ]
+      }
+    ],
+    "showOnComponentsPanel": false,
+    "isDeletable": false
+  }
+}
