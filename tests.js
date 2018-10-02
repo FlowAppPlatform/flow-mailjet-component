@@ -1,7 +1,8 @@
 var Mail = require('./src/mail');
-var SendEmailComponent = require('./src/component');
+var Component = require('./src/send-email');
 
-describe('Mail Tests', function () {
+describe(`Mail Tests
+`, function () {
   it(`Mail instance "new Mail()" should not be valid`, function (done) {
     const mail = new Mail();
     done(!mail.mailValid() ? null : new Error('Invalid mail instance read valid'));
@@ -52,10 +53,11 @@ describe('Mail Tests', function () {
   })
 })
 
-describe('Component Tests', function () {
+describe(`Component Tests
+`, function () {
   it('Component should have all required properties', function (done) {
     try {
-      const component = new SendEmailComponent();
+      const component = new Component();
       component.getProperty('API_KEY_PUBLIC');
       component.getProperty('API_KEY_PRIVATE');
       component.getProperty('From');
@@ -67,7 +69,7 @@ describe('Component Tests', function () {
   })
   it('Component should have all required ports', function (done) {
     try {
-      const component = new SendEmailComponent();
+      const component = new Component();
       component.getPort('Sent');
       component.getPort('Bounced');
       component.getPort('Error');
