@@ -31,27 +31,27 @@
         "categoryDescription": "Basic settings about email component.",
         "properties": [
           {
-            "id": "from",
+            "id": "From",
             "name": "From",
             "type": "email",
             "data": null,
             "options": { "required": true }
           },
           {
-            "id": "to",
+            "id": "To",
             "name": "To",
             "type": "email",
             "data": null,
             "options": { "required": true }
           },
           {
-            "id": "subject",
+            "id": "Subject",
             "name": "Subject",
             "type": "text",
             "data": null
           },
           {
-            "id": "body",
+            "id": "Body",
             "name": "Body",
             "type": "text",
             "data": null
@@ -63,15 +63,15 @@
         "categoryDescription": "API settings for Mailjet.",
         "properties": [
           {
-            "id": "public_key",
-            "name": "API_KEY_PUBLIC",
+            "id": "API_KEY_PUBLIC",
+            "name": "Public API Key",
             "type": "text",
             "data": null,
             "options": { "required": true, "global": true }
           },
           {
-            "id": "private_key",
-            "name": "API_KEY_PRIVATE",
+            "id": "API_KEY_PRIVATE",
+            "name": "Private API Key",
             "type": "text",
             "data": null,
             "options": { "required": true, "global": true }
