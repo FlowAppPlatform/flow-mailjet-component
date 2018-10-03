@@ -70,9 +70,13 @@ describe(`Component Tests
   it('Component should have all required ports', function (done) {
     try {
       const component = new Component();
-      component.getPort('Sent');
-      component.getPort('Bounced');
-      component.getPort('Error');
+      const ports = [
+        component.getPort('Sent'),
+        component.getPort('Bounced'),
+        component.getPort('Error')
+      ]
+      ports[Math.floor(Math.random()*Math.floor(3))]
+        .getProperty('Data');
       done();
     } catch(e) { done(new Error('Component missing required ports')); }
   })
