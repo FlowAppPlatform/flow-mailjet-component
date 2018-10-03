@@ -42,6 +42,11 @@ class SendEmailComponent extends Flow.Component {
     var error = new Flow.Port('Error');
     var bounced = new Flow.Port('Bounced');
     
+    var data = new Flow.Property('Data', 'text');
+    sent.addProperty(data);
+    error.addProperty(data);
+    bounced.addProperty(data);
+
     this.addPort(sent);
     this.addPort(error);
     this.addPort(bounced);
@@ -62,21 +67,23 @@ class SendEmailComponent extends Flow.Component {
         this.emitResult('Error');
       } else
         doTask
-          .then(() => {
-            this.emitResult('Sent');
+          .then(response => {
+            this.emitResult('Sent', response);
           })
           .catch(err => {
             if (err.statusCode === 422) { // receipient mail box full
-              this.emitResult('Bounced');
+              this.emitResult('Bounced', err);
             } else
-              this.emitResult('Error');
+              this.emitResult('Error', err);
           });
     });
 
   }
 
-  emitResult(portName) {
-    this.getPort(portName).emit();
+  emitResult(portName, data) {
+    const port = this.getPort(portName);
+    port.getProperty('Data').data = JSON.stringify(data);
+    port.emit();
     this.taskComplete();
   }
 
