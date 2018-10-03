@@ -4,8 +4,10 @@ var Mail = require('./src/mail');
 /*
 *
 * This component sends email
+* 
 * The component has 6 properties - `Public API Key`, `Private API Key`, From`, `To`, `Subject`, and `Body`
 * The component has 3 ports respective to the mail statuses `Sent`, `Bounced`, `Error`
+* The ports each have the `Data` property, the response from Mailjet
 *
 */
 
@@ -64,7 +66,7 @@ class SendEmailComponent extends Flow.Component {
         ).send();
       
       if (doTask instanceof Error) {
-        this.emitResult('Error');
+        this.emitResult('Error', doTask);
       } else
         doTask
           .then(response => {
