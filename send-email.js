@@ -1,9 +1,9 @@
 var Flow = require('flow-platform-sdk');
-var Mail = require('./mail');
+var Mail = require('./src/mail');
 
 /*
 *
-* SendEmailComponent sends email
+* This component sends email
 * The component has 6 properties - `Public API Key`, `Private API Key`, From`, `To`, `Subject`, and `Body`
 * The component has 3 ports respective to the mail statuses `Sent`, `Bounced`, `Error`
 *

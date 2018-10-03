@@ -1,5 +1,5 @@
 var Mail = require('./src/mail');
-var Component = require('./src/send-email');
+var Component = require('./send-email');
 
 describe(`Mail Tests
 `, function () {

@@ -4,7 +4,7 @@
     "title": "Send Email",
     "imgSrc": "assets/icons/send-email.svg",
     "type": "flow-graph-component",
-    "file": "src/send-email.js",
+    "file": "send-email.js",
     "executionPlatform": ["server"],
     "metadata": {
       "icon-color": "#7ab260"
