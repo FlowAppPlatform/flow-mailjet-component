@@ -66,3 +66,8 @@ component.getPort('Error').onEmit(function(){
 // mandatory to execute the component
 component.execute();
 ```
+
+#### Conclusion
+
+That's it! You've successfully used the Flow Mailjet component.
+If you are having trouble sending emails, check that you are using the correct Mailjet API keys and the right sender address.
