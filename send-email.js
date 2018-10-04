@@ -73,27 +73,29 @@ class SendEmailComponent extends Flow.Component {
         ).send();
       
       if (doTask instanceof Error) {
-        this.emitResult('Error', doTask);
-      } else
-        doTask
-          .then(response => {
-            this.emitResult('Sent', response);
-          })
-          .catch(err => {
-            if (err.statusCode === 422) { // receipient mail box full
-              this.emitResult('Bounced', err);
-            } else
-              this.emitResult('Error', err);
-          });
+        const port = this.getPort('Error');
+        port.getProperty('Data').data = response;
+        port.emit();
+        this.taskComplete();
+        return;
+      }
+      doTask
+        .then(response => {
+          const port = this.getPort('Sent');
+          port.getProperty('Data').data = response;
+          port.emit();
+          this.taskComplete();
+        })
+        .catch(err => {
+          let port = this.getPort('Error');
+          if (err.statusCode === 422) // receipient mail box full
+            port = this.getPort('Bounced');
+          port.getProperty('Data').data = err;
+          port.emit();
+          this.taskComplete();
+        });
     });
 
-  }
-
-  emitResult(portName, data) {
-    const port = this.getPort(portName);
-    port.getProperty('Data').data = data;
-    port.emit();
-    this.taskComplete();
   }
 
 }
