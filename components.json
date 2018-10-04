@@ -11,7 +11,7 @@
     },
     "ports": [
       {
-        "id": "sent",
+        "id": "Sent",
         "title": "Sent",
         "description": "Denotes the state when email is sent",
         "properties": [
@@ -31,7 +31,7 @@
         ]
       },
       {
-        "id": "bounced",
+        "id": "Bounced",
         "title": "Bounced",
         "description": "Denotes the state when email bounces",
         "properties": [
@@ -51,7 +51,7 @@
         ]
       },
       {
-        "id": "error",
+        "id": "Error",
         "title": "Error",
         "description": "Denotes the state when anyother error occurs",
         "properties": [
