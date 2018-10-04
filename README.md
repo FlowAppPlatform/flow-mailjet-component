@@ -69,5 +69,6 @@ component.execute();
 
 #### Conclusion
 
-That's it! You've successfully used the Flow Mailjet component.
-If you are having trouble sending emails, check that you are using the correct Mailjet API keys and the right sender address.
+And that's it! You've successfully used the Flow Mailjet component.
+
+If you are having trouble sending emails, check that you are using the correct [Mailjet API keys](https://app.mailjet.com/account/setup) and the right [sender address](https://app.mailjet.com/account/sender).
