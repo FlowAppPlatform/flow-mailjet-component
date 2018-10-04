@@ -23,7 +23,8 @@
                 "id": "Data",
                 "name": "Response",
                 "type": "text",
-                "data": {}
+                "data": {},
+                "options": { "required": true }
               }
             ]
           }
@@ -42,7 +43,8 @@
                 "id": "Data",
                 "name": "Error",
                 "type": "text",
-                "data": {}
+                "data": {},
+                "options": { "required": true }
               }
             ]
           }
@@ -61,7 +63,8 @@
                 "id": "Data",
                 "name": "Error",
                 "type": "text",
-                "data": {}
+                "data": {},
+                "options": { "required": true }
               }
             ]
           }
