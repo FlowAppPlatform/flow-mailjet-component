@@ -13,17 +13,59 @@
       {
         "id": "sent",
         "title": "Sent",
-        "description": "Denotes the state when email is sent"
+        "description": "Denotes the state when email is sent",
+        "properties": [
+          {
+            "categoryName": "General",
+            "categoryDescription": "Basic settings about this port.",
+            "properties": [
+              {
+                "id": "Data",
+                "name": "Response",
+                "type": "text",
+                "data": {}
+              }
+            ]
+          }
+        ]
       },
       {
         "id": "bounced",
         "title": "Bounced",
-        "description": "Denotes the state when email bounces"
+        "description": "Denotes the state when email bounces",
+        "properties": [
+          {
+            "categoryName": "General",
+            "categoryDescription": "Basic settings about this port.",
+            "properties": [
+              {
+                "id": "Data",
+                "name": "Error",
+                "type": "text",
+                "data": {}
+              }
+            ]
+          }
+        ]
       },
       {
         "id": "error",
         "title": "Error",
-        "description": "Denotes the state when anyother error occurs"
+        "description": "Denotes the state when anyother error occurs",
+        "properties": [
+          {
+            "categoryName": "General",
+            "categoryDescription": "Basic settings about this port.",
+            "properties": [
+              {
+                "id": "Data",
+                "name": "Error",
+                "type": "text",
+                "data": {}
+              }
+            ]
+          }
+        ]
       }
     ],
     "properties": [
