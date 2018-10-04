@@ -1,5 +1,5 @@
 # Flow Mailjet component
-The component is a npm package that sends email using Mailjet and is designed to work with Flow SDK
+The component is an npm package that sends email using Mailjet and is designed to work with Flow SDK
 
 *To use the component, install the package in your NodeJS project*
 
@@ -15,11 +15,18 @@ const Component = require('flow-mailjet-component');
 
 // create instance of the component
 const component = new Component();
+```
 
-// provide mailjet credentials, public and private api keys
+*Provide mailjet credentials, public and private api keys*
+
+```javascript
 component.getProperty('API_KEY_PUBLIC').data = 'Your_Public_Mailjet_Key';
 component.getProperty('API_KEY_PRIVATE').data = 'Your_Private_Mailjet_Key';
+```
 
+*Provide email fields*
+
+```javascript
 // provide from and to address of the email
 component.getProperty('From').data = 'fro@domain';
 component.getProperty('To').data = 'to@domain';
@@ -27,10 +34,10 @@ component.getProperty('To').data = 'to@domain';
 // provide the subject and body for the email
 component.getProperty('Subject').data = 'Checking your availability';
 component.getProperty('Body').data = 'Hello, Merrari.';
+```
 
-
-// listen in for port emit events
-
+*Listen in for port emit events*
+```javascript
 component.getPort('Sent').onEmit(function(){
   // email was sent
   // the server response can be accessed through the 'Data' property of the port
