@@ -1,11 +1,11 @@
 var Mail = require('./src/mail');
-var Component = require('./src/send-email');
+var Component = require('./send-email');
 
 describe(`Mail Tests
 `, function () {
   it(`Mail instance "new Mail()" should not be valid`, function (done) {
     const mail = new Mail();
-    done(!mail.mailValid() ? null : new Error('Invalid mail instance read valid'));
+    done(!mail.isMailValid() ? null : new Error('Invalid mail instance read valid'));
   })
   it(`Mail instance "new Mail(
     'ccf7c44ea1ddb60dd36bbd8f50aa2d24','29f62c2654193c5fb746500769a7cefd',
@@ -13,7 +13,7 @@ describe(`Mail Tests
     const mail = new Mail(
       'ccf7c44ea1ddb60dd36bbd8f50aa2d24', '29f62c2654193c5fb746500769a7cefd',
       '', 'to@sample.com', 'Subject', 'Body');
-    done(!mail.mailValid() ? null : new Error('Invalid mail instance read valid'));
+    done(!mail.isMailValid() ? null : new Error('Invalid mail instance read valid'));
   })
   it(`Mail instance "new Mail(
     'ccf7c44ea1ddb60dd36bbd8f50aa2d24','29f62c2654193c5fb746500769a7cefd',
@@ -25,7 +25,7 @@ describe(`Mail Tests
       'Hello there',
       'Checking you'
     );
-    done(!mail.mailValid() ? null : new Error('Invalid mail instance read valid'));
+    done(!mail.isMailValid() ? null : new Error('Invalid mail instance read valid'));
   })
   it(`Mail instance "new Mail(
     'ccf7c44ea1ddb60dd36bbd8f50aa2d24','',
@@ -37,7 +37,7 @@ describe(`Mail Tests
       'Hello there',
       'Checking you'
     );
-    done(!mail.mailValid() ? null : new Error('Inalid mail instance read valid'));
+    done(!mail.isMailValid() ? null : new Error('Inalid mail instance read valid'));
   })
   it(`Mail instance "new Mail(
     'ccf7c44ea1ddb60dd36bbd8f50aa2d24','29f62c2654193c5fb746500769a7cefd',
@@ -49,7 +49,7 @@ describe(`Mail Tests
       'Hello there',
       'Checking you'
     );
-    done(mail.mailValid() ? null : new Error('Valid mail instance read invalid'));
+    done(mail.isMailValid() ? null : new Error('Valid mail instance read invalid'));
   })
 })
 
@@ -70,9 +70,13 @@ describe(`Component Tests
   it('Component should have all required ports', function (done) {
     try {
       const component = new Component();
-      component.getPort('Sent');
-      component.getPort('Bounced');
-      component.getPort('Error');
+      const ports = [
+        component.getPort('Sent'),
+        component.getPort('Bounced'),
+        component.getPort('Error')
+      ]
+      ports[Math.floor(Math.random()*Math.floor(3))]
+        .getProperty('Data');
       done();
     } catch(e) { done(new Error('Component missing required ports')); }
   })

@@ -44,15 +44,13 @@ class Mail {
     );
   }
 
-  mailValid() {
+  isMailValid() {
     return (
       Boolean(this.API_KEY_PUBLIC) &&
       Boolean(this.API_KEY_PRIVATE) &&
       Boolean(this.mailjet) &&
       validator.validate(this.from) &&
-      validator.validate(this.to) &&
-      Boolean(this.subject) &&
-      Boolean(this.body)
+      validator.validate(this.to)
     );
   }
 

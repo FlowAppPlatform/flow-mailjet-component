@@ -4,25 +4,71 @@
     "title": "Send Email",
     "imgSrc": "assets/icons/send-email.svg",
     "type": "flow-graph-component",
-    "file": "src/send-email.js",
+    "file": "send-email.js",
+    "executionPlatform": ["server"],
     "metadata": {
       "icon-color": "#7ab260"
     },
     "ports": [
       {
-        "id": "sent",
+        "id": "Sent",
         "title": "Sent",
-        "description": "Denotes the state when email is sent"
+        "description": "Denotes the state when email is sent",
+        "properties": [
+          {
+            "categoryName": "General",
+            "categoryDescription": "Basic settings about this port.",
+            "properties": [
+              {
+                "id": "Data",
+                "name": "Response",
+                "type": "object",
+                "data": null,
+                "options": { "required": true }
+              }
+            ]
+          }
+        ]
       },
       {
-        "id": "bounced",
+        "id": "Bounced",
         "title": "Bounced",
-        "description": "Denotes the state when email bounces"
+        "description": "Denotes the state when email bounces",
+        "properties": [
+          {
+            "categoryName": "General",
+            "categoryDescription": "Basic settings about this port.",
+            "properties": [
+              {
+                "id": "Data",
+                "name": "Error",
+                "type": "object",
+                "data": null,
+                "options": { "required": true }
+              }
+            ]
+          }
+        ]
       },
       {
-        "id": "error",
+        "id": "Error",
         "title": "Error",
-        "description": "Denotes the state when anyother error occurs"
+        "description": "Denotes the state when anyother error occurs",
+        "properties": [
+          {
+            "categoryName": "General",
+            "categoryDescription": "Basic settings about this port.",
+            "properties": [
+              {
+                "id": "Data",
+                "name": "Error",
+                "type": "object",
+                "data": null,
+                "options": { "required": true }
+              }
+            ]
+          }
+        ]
       }
     ],
     "properties": [
