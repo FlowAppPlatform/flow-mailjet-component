@@ -42,24 +42,18 @@ component.getPort('Sent').onEmit(function(){
   // email was sent
   // the server response can be accessed through the 'Data' property of the port
   let response = component.getPort('Sent').getProperty('Data').data;
-  // the response is stored as a json encoded string
-  response = JSON.parse(response);
 });
 
 component.getPort('Bounced').onEmit(function(){
   // email bounced
   // the actual error can be accessed through the 'Data' property of the port
   let err = component.getPort('Bounced').getProperty('Data').data;
-  // the error is stored as a json encoded string
-  err = JSON.parse(err);
 });
 
 component.getPort('Error').onEmit(function(){
   // a seperate error occured
   // the actual error can be accessed through the 'Data' property of the port
   let err = component.getPort('Error').getProperty('Data').data;
-  // the error is stored as a json encoded string
-  err = JSON.parse(err);
 });
 
 
