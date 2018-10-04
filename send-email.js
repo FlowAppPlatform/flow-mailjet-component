@@ -45,6 +45,7 @@ class SendEmailComponent extends Flow.Component {
     var bounced = new Flow.Port('Bounced');
     
     var data = new Flow.Property('Data', 'text');
+    data.required = true;
     sent.addProperty(data);
     error.addProperty(data);
     bounced.addProperty(data);
