@@ -44,11 +44,17 @@ class SendEmailComponent extends Flow.Component {
     var error = new Flow.Port('Error');
     var bounced = new Flow.Port('Bounced');
     
-    var data = new Flow.Property('Data', 'object');
-    data.required = true;
-    sent.addProperty(data);
-    error.addProperty(data);
-    bounced.addProperty(data);
+    var response = new Flow.Property('Data', 'object');
+    response.required = true;
+    sent.addProperty(response);
+    
+    var generalError = new Flow.Property('Data', 'object');
+    generalError.required = true;
+    error.addProperty(generalError);
+    
+    var bouncedError = new Flow.Property('Data', 'object');
+    bouncedError.required = true;
+    bounced.addProperty(bouncedError);
 
     this.addPort(sent);
     this.addPort(error);
