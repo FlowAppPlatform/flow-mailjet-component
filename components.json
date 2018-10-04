@@ -22,8 +22,8 @@
               {
                 "id": "Data",
                 "name": "Response",
-                "type": "text",
-                "data": {},
+                "type": "object",
+                "data": null,
                 "options": { "required": true }
               }
             ]
@@ -42,8 +42,8 @@
               {
                 "id": "Data",
                 "name": "Error",
-                "type": "text",
-                "data": {},
+                "type": "object",
+                "data": null,
                 "options": { "required": true }
               }
             ]
@@ -62,8 +62,8 @@
               {
                 "id": "Data",
                 "name": "Error",
-                "type": "text",
-                "data": {},
+                "type": "object",
+                "data": null,
                 "options": { "required": true }
               }
             ]
