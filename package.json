@@ -2,7 +2,7 @@
   "name": "flow-mailjet-component",
   "version": "1.0.0",
   "description": "Mailjet component designed to work with Flow SDK",
-  "main": "./send-mail.js",
+  "main": "./send-email.js",
   "scripts": {
     "test": "eslint ./src --fix && ./node_modules/mocha/bin/mocha tests.js"
   },
