@@ -44,7 +44,7 @@ class SendEmailComponent extends Flow.Component {
     var error = new Flow.Port('Error');
     var bounced = new Flow.Port('Bounced');
     
-    var data = new Flow.Property('Data', 'text');
+    var data = new Flow.Property('Data', 'object');
     data.required = true;
     sent.addProperty(data);
     error.addProperty(data);
@@ -85,7 +85,7 @@ class SendEmailComponent extends Flow.Component {
 
   emitResult(portName, data) {
     const port = this.getPort(portName);
-    port.getProperty('Data').data = JSON.stringify(data);
+    port.getProperty('Data').data = data;
     port.emit();
     this.taskComplete();
   }
