@@ -74,7 +74,7 @@ class SendEmailComponent extends Flow.Component {
       
       if (doTask instanceof Error) {
         const port = this.getPort('Error');
-        port.getProperty('Data').data = response;
+        port.getProperty('Data').data = doTask;
         port.emit();
         this.taskComplete();
         return;

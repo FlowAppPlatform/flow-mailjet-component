@@ -26,7 +26,7 @@ class Mail {
   }
 
   send() {
-    if (!this.mailValid()) return new Error('Mailer error, please check \'Mail\' contructor');
+    if (!this.isMailValid()) return new Error('Mailer error, please check \'Mail\' contructor');
     return (
       this.mailjet
         .post('send', {
