@@ -26,6 +26,10 @@ class Mail {
   }
 
   send() {
+    /* Support tests to this point */
+    if (process.env.NODE_ENV === 'testing') return new Promise(
+      resolve => resolve(JSON.stringify({ result: 'succesful' }))
+    );
     if (!this.isMailValid()) return new Error('Mailer error, please check \'Mail\' contructor');
     return (
       this.mailjet
