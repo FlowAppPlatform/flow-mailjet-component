@@ -3,71 +3,60 @@ var Component = require('./send-email');
 
 describe(`Mail Tests
 `, function () {
-  it(`Mail instance "new Mail()" should not be valid`, function (done) {
+  it(`Mail instance should not be valid`, function (done) {
     const mail = new Mail();
     done(!mail.isMailValid() ? null : new Error('Invalid mail instance read valid'));
   })
-  it(`Mail instance "new Mail(
-    'ccf7c44ea1ddb60dd36bbd8f50aa2d24','29f62c2654193c5fb746500769a7cefd',
-    '','to@sample.com','Subject','Body')" should not be valid`, function (done) {
-    const mail = new Mail(
-      'ccf7c44ea1ddb60dd36bbd8f50aa2d24', '29f62c2654193c5fb746500769a7cefd',
-      '', 'to@sample.com', 'Subject', 'Body');
-    done(!mail.isMailValid() ? null : new Error('Invalid mail instance read valid'));
-  })
-  it(`Mail instance "new Mail(
-    'ccf7c44ea1ddb60dd36bbd8f50aa2d24','29f62c2654193c5fb746500769a7cefd',
-    from@sample.com','hello','Hello there','Checking you')" should not be valid`, function (done) {
+  it(`Mail instance should not be valid`, function (done) {
     const mail = new Mail(
       'ccf7c44ea1ddb60dd36bbd8f50aa2d24', '29f62c2654193c5fb746500769a7cefd',
       'from@sample.com',
       'hello',
-      'Hello there',
-      'Checking you'
+      'Test',
+      'Hello there.'
     );
     done(!mail.isMailValid() ? null : new Error('Invalid mail instance read valid'));
   })
-  it(`Mail instance "new Mail(
-    'ccf7c44ea1ddb60dd36bbd8f50aa2d24','',
-    from@sample.com','to@sample.com','Hello there','Checking you')" should be valid`, function (done) {
+  it(`Mail instance should be valid`, function (done) {
     const mail = new Mail(
       'ccf7c44ea1ddb60dd36bbd8f50aa2d24', '',
       'from@sample.com',
       'to@sample.com',
-      'Hello there',
-      'Checking you'
+      'Test',
+      'Hello there.'
     );
-    done(!mail.isMailValid() ? null : new Error('Inalid mail instance read valid'));
-  })
-  it(`Mail instance "new Mail(
-    'ccf7c44ea1ddb60dd36bbd8f50aa2d24','29f62c2654193c5fb746500769a7cefd',
-    from@sample.com','to@sample.com','Hello there','Checking you')" should be valid`, function (done) {
-    const mail = new Mail(
-      'ccf7c44ea1ddb60dd36bbd8f50aa2d24', '29f62c2654193c5fb746500769a7cefd',
-      'from@sample.com',
-      'to@sample.com',
-      'Hello there',
-      'Checking you'
-    );
-    done(mail.isMailValid() ? null : new Error('Valid mail instance read invalid'));
+    done(!mail.isMailValid() ? null : new Error('Invalid mail instance read valid'));
   })
 })
 
 describe(`Component Tests
 `, function () {
-  it('Component should have all required properties', function (done) {
+  it('Component should execute without errors', function (done) {
     try {
+      const Graph = require('flow-platform-sdk').Graph;
+      const Component = require('./send-email');
+
       const component = new Component();
-      component.getProperty('API_KEY_PUBLIC');
-      component.getProperty('API_KEY_PRIVATE');
-      component.getProperty('From');
-      component.getProperty('To');
-      component.getProperty('Subject');
-      component.getProperty('Body');
-      done();
-    } catch(e) { done(new Error('Component missing required properties')); }
+
+      component.getProperty('API_KEY_PUBLIC').data = 'Your_Public_Mailjet_Key';
+      component.getProperty('API_KEY_PRIVATE').data = 'Your_Private_Mailjet_Key';
+
+      component.getProperty('From').data = 'fro@domain.store';
+      component.getProperty('To').data = 'to@domain.store';
+      
+      component.getProperty('Subject').data = 'Checking your availability';
+      component.getProperty('Body').data = 'Hello, Merrari.';
+
+      component.getPort('Sent').onEmit(function(){
+        done();
+      });
+
+      new Graph("graph-1").addComponent(component);
+      component.execute();
+
+    } catch(e) { done(e); }
   })
-  it('Component should have all required ports', function (done) {
+  it('Component ports should have Data property', function (done) {
     try {
       const component = new Component();
       const ports = [
@@ -75,9 +64,10 @@ describe(`Component Tests
         component.getPort('Bounced'),
         component.getPort('Error')
       ]
-      ports[Math.floor(Math.random()*Math.floor(3))]
-        .getProperty('Data');
+      ports[0].getProperty('Data');
+      ports[1].getProperty('Data');
+      ports[2].getProperty('Data');
       done();
-    } catch(e) { done(new Error('Component missing required ports')); }
+    } catch(e) { done(new Error('Component missing required ports or Data property on some ports')); }
   })
 })
