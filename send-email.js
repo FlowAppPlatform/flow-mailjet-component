@@ -13,9 +13,9 @@ var Mail = require('./src/mail');
 
 class SendEmailComponent extends Flow.Component {
   
-  constructor() {
+  constructor(id = null) {
 
-    super();    
+    super(id);    
     this.name = 'Send Email';
 
     var key_public = new Flow.Property('API_KEY_PUBLIC', 'text');

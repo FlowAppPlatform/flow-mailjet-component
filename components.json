@@ -1,9 +1,10 @@
 {
   "flow-mailjet-component-send-email": {
-    "componentId": "flow-mailjet-component-send-email",
+    "graphComponentId": "flow-mailjet-component-send-email",
     "title": "Send Email",
-    "imgSrc": "assets/icons/send-email.svg",
-    "type": "flow-graph-component",
+    "category": "Actions",
+    "imgSrc": "assets/images/icons/send-email.svg",
+    "type": "graphComponent",
     "file": "send-email.js",
     "executionPlatform": ["server"],
     "metadata": {
@@ -17,7 +18,7 @@
         "properties": [
           {
             "categoryName": "General",
-            "categoryDescription": "Basic settings about this port.",
+            "categoryDescription": "Basic settings about this port",
             "properties": [
               {
                 "id": "Data",
@@ -37,7 +38,7 @@
         "properties": [
           {
             "categoryName": "General",
-            "categoryDescription": "Basic settings about this port.",
+            "categoryDescription": "Basic settings about this port",
             "properties": [
               {
                 "id": "Data",
@@ -57,7 +58,7 @@
         "properties": [
           {
             "categoryName": "General",
-            "categoryDescription": "Basic settings about this port.",
+            "categoryDescription": "Basic settings about this port",
             "properties": [
               {
                 "id": "Data",
@@ -74,7 +75,7 @@
     "properties": [
       {
         "categoryName": "General",
-        "categoryDescription": "Basic settings about email component.",
+        "categoryDescription": "Basic settings about email component",
         "properties": [
           {
             "id": "From",
@@ -106,7 +107,7 @@
       }, 
       {
         "categoryName": "Advanced",
-        "categoryDescription": "API settings for Mailjet.",
+        "categoryDescription": "API settings for Mailjet",
         "properties": [
           {
             "id": "API_KEY_PUBLIC",
