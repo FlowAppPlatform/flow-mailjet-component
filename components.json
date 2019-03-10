@@ -2,7 +2,7 @@
   "flow-mailjet-component-send-email": {
     "graphComponentId": "flow-mailjet-component-send-email",
     "title": "Send Email",
-    "category": "Actions",
+    "category": "Email",
     "imgSrc": "assets/images/icons/send-email.svg",
     "type": "graphComponent",
     "file": "send-email.js",
