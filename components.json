@@ -15,7 +15,7 @@
         "id": "Sent",
         "title": "Sent",
         "description": "Denotes the state when email is sent",
-        "color": "#3BC105",
+        "color": "#7ab260",
         "properties": [
           {
             "categoryName": "General",
@@ -36,7 +36,7 @@
         "id": "Bounced",
         "title": "Bounced",
         "description": "Denotes the state when email bounces",
-        "color": "#F4CE42",
+        "color": "#F49835",
         "properties": [
           {
             "categoryName": "General",
